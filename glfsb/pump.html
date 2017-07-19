@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>泵机带图</title>
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+		<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="easyui/themes/bootstrap/easyui.css" />
+		<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css" />
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/resect.css" />
+		<style type="text/css">
+			body {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+			}
+			
+			.criteria {
+				line-height: 25px;
+				height: 30px;
+			}
+			
+			.btn {
+				padding: 2px 12px;
+			}
+			
+			.textbox-text {
+				height: 25px !important;
+			}
+			
+			.pump-content {
+				position: absolute;
+				top: 32px;
+				bottom: 0;
+				width: 100%;
+			}
+			
+			#pump-chart {
+				border: 1px solid #ddd;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="criteria">
+			起止时间：<input class="easyui-datetimebox" name="birthday" data-options="required:true,showSeconds:false" value="5/6/2017 2:3" style="width:150px"> - <input class="easyui-datetimebox" name="birthday" data-options="required:true,showSeconds:false" value="6/6/2017 2:3" style="width:150px">
+			<button type="button" class="btn btn-primary">查询</button>
+		</div>
+		<div class="pump-content">
+			<div id="pump-chart" style="width: 100%;height:100%;"></div>
+		</div>
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+		<script src="https://cdn.bootcss.com/echarts/3.6.1/echarts.js"></script>
+		<script type="text/javascript">
+			var myChart = echarts.init(document.getElementById('pump-chart'));
+			var data = [];
+			var dataCount = 10;
+			var startTime = +new Date();
+			var categories = ['水泵1', '水泵2', '水泵3'];
+			var type = ['水泵1','水泵2','水泵3'];
+			var types = [{
+					name: '水泵1',
+					color: '#7b9ce1'
+				},
+				{
+					name: '水泵2',
+					color: '#bd6d6c'
+				},
+				{
+					name: '水泵3',
+					color: '#75d874'
+				}
+			];
+
+			// Generate mock data
+			echarts.util.each(categories, function(category, index) {
+				console.log(index);
+				var baseTime = startTime;
+				for(var i = 0; i < dataCount; i++) {
+					var typeItem = types[index];
+					var duration; /*= Math.random()*10000;*/
+					if(index == 0){
+						duration = 20000;
+					}
+					if(index == 1){
+						duration = 10000;
+					}
+					if(index == 3){
+						duration = 0;
+					}
+					data.push({
+						name: typeItem.name,
+						value: [
+							index,
+							baseTime,
+							baseTime += duration,
+							duration
+						],
+						itemStyle: {
+							normal: {
+								color: typeItem.color
+							}
+						}
+					});
+					if(index == 0){
+						baseTime += 0;
+					}
+					if(index == 1){
+						baseTime += 10000;
+					}
+					if(index == 3){
+						baseTime += 20000;
+					}
+					/*baseTime += Math.random()*6000;*/
+				}
+			});
+
+			function renderItem(params, api) {
+				var categoryIndex = api.value(0);
+				var start = api.coord([api.value(1), categoryIndex]);
+				var end = api.coord([api.value(2), categoryIndex]);
+				var height = api.size([0, 1])[1] * 0.6;
+
+				return {
+					type: 'rect',
+					shape: echarts.graphic.clipRectByRect({
+						x: start[0],
+						y: start[1] - height / 2,
+						width: end[0] - start[0],
+						height: height
+					}, {
+						x: params.coordSys.x,
+						y: params.coordSys.y,
+						width: params.coordSys.width,
+						height: params.coordSys.height
+					}),
+					style: api.style()
+				};
+			}
+
+			option = {
+				tooltip: {
+					formatter: function(params) {
+						return params.marker + params.name + ': ' + params.value[3] + ' ms';
+					}
+				},
+				title: {
+					text: '泵机带图'
+				},
+				legend: {
+					data: type
+				},
+				dataZoom: [{
+					type: 'slider',
+					filterMode: 'weakFilter',
+					showDataShadow: false,
+				}, {
+					type: 'inside',
+					filterMode: 'weakFilter'
+				}],
+				grid: {
+					show: true
+				},
+				xAxis: {
+					type: 'time'
+				},
+				yAxis: {
+					data: categories
+				},
+				series: [{
+					type: 'custom',
+					renderItem: renderItem,
+					itemStyle: {
+						normal: {
+							opacity: 0.8
+						}
+					},
+					encode: {
+						x: [1, 2],
+						y: 0
+					},
+					data: data
+				}]
+			};
+			console.log(data);
+			myChart.setOption(option);
+		</script>
+	</body>
+
+</html>

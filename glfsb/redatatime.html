@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>原始数据</title>
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+		<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="easyui/themes/bootstrap/easyui.css" />
+		<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css" />
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/resect.css" />
+		<style type="text/css">
+			body {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+			}
+			
+			.criteria {
+				line-height: 25px;
+				height: 30px;
+			}
+			
+			.btn {
+				padding: 2px 12px;
+			}
+			
+			.textbox-text {
+				height: 25px !important;
+			}
+			
+			.redata-content {
+				position: absolute;
+				top: 32px;
+				bottom: 0;
+				width: 100%;
+			}
+			
+			#chart {
+				border: 1px solid #ddd;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="criteria">
+			起止时间：<input class="easyui-datetimebox" name="birthday" data-options="required:true,showSeconds:false" value="5/6/2017 2:3" style="width:150px"> - <input class="easyui-datetimebox" name="birthday" data-options="required:true,showSeconds:false" value="6/6/2017 2:3" style="width:150px">
+			<button type="button" class="btn btn-primary" onclick="aaa()">查询</button>
+		</div>
+		<div class="redata-content">
+			<div id="chart" style="width: 100%;height:100%;"></div>
+		</div>
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+		<script src="https://cdn.bootcss.com/echarts/3.6.1/echarts.js"></script>
+		<script type="text/javascript">
+			$.ajax({
+				type: "get",
+				url: "data/lishidata.json",
+				dataType: "json",
+				success: function(data) {
+					createCharts(data[0].chart);
+				}
+			});
+			/*function aaa(){
+				window.location.replace("system.html");
+			}*/
+			/*创建曲线*/
+			function createCharts(myData) {
+				var myChart = echarts.init(document.getElementById('chart'));
+				// 指定图表的配置项和数据
+				var option = {
+					title: {
+						text: '历史数据'
+					},
+					legend: {
+						data: ['temp3', 'h3']
+					},
+					grid: {
+						left: '3%',
+						right: '4%',
+						bottom: '3%',
+						containLabel: true
+					},
+					dataZoom: [{
+						type: 'slider',
+						xAxisIndex: 0,
+						filterMode: 'empty'
+					}],
+					tooltip: {
+						trigger: 'axis',
+					},
+					toolbox: {
+						show: true,
+						right: "25px",
+						top: "20px",
+						feature: {
+							dataZoom: {
+								yAxisIndex: 'none'
+							},
+							restore: {}
+						}
+					},
+					xAxis: {
+						type: 'time'
+					},
+					yAxis: {
+						type: 'value'
+					},
+					series: myData
+				};
+				myChart.setOption(option);
+				return myChart;
+			}
+		</script>
+	</body>
+
+</html>

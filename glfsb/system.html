@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>系统管理</title>
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+		<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="easyui/themes/bootstrap/easyui.css" />
+		<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css" />
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/resect.css" />
+		<link rel="stylesheet" type="text/css" href="css/tabulous.css" />
+		<style type="text/css">
+			body {
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				width: 100%;
+			}
+			
+			.system {
+				position: relative;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				padding: 30px;
+				text-align: center;
+			}
+			
+			.system>ul {
+				position: absolute;
+				top: 30px;
+				left: 30px;
+				bottom: 30px;
+				width: 130px;
+				border-right: 3px solid #00EE00;
+			}
+			
+			.system>ul>li {
+				width: 130px;
+				height: 30px;
+			}
+			
+			.system>ul>li>a {
+				display: block;
+				line-height: 30px;
+				width: 127px;
+				padding-right: 20px;
+				text-align: right;
+			}
+			
+			.tabulous_active {
+				border-bottom: 1px solid #00EE00;
+			}
+			
+			#tabs_container {
+				position: absolute;
+				top: 30px;
+				left: 163px;
+				right: 30px;
+				bottom: 30px;
+				height: auto !important;
+				border: 1px solid #ddd;
+				border-left: 0;
+			}
+			
+			#tabs-1 {
+				text-align: left;
+			}
+			.form-group{
+				display: block;
+				width: 400px;
+			}
+			.form-control{
+				width: 60%;
+				display: inline !important;
+			}
+			/*.tabs-content{
+				position: relative !important;
+				top: 0px !important;
+				text-align: left;
+			}*/
+		</style>
+	</head>
+
+	<body>
+		<div class="system">
+			<ul>
+				<li>
+					<a href="#tabs-1">帐号设置</a>
+				</li>
+				<li>
+					<a href="#tabs-2">报警设置</a>
+				</li>
+				<li>
+					<a href="#tabs-3">其他设置</a>
+				</li>
+			</ul>
+			<div id="tabs_container">
+				<div id="tabs-1">
+					<p>当前用户：admin</p>
+					<button type="button" class="btn btn-link">修改密码</button>
+					<button type="button" class="btn btn-danger">注销用户</button>
+				</div>
+				<div id="tabs-2">
+					<p class="form-group">
+						<label for="exampleInputName2">报警上限</label>
+						<input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+					</p>
+					<p class="form-group">
+						<label for="exampleInputName2">报警下限</label>
+						<input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+					</p>
+				</div>
+				<div id="tabs-3">
+					
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="js/tabulous.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('.system').tabulous({
+					effect: 'scale'
+				});
+			});
+		</script>
+	</body>
+
+</html>

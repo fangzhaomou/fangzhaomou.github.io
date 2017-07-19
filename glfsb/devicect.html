@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>设备控制</title>
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/resect.css" />
+		<style type="text/css">
+			body{
+				text-align: center;
+				position: relative;
+			}
+			.epic{
+				position: absolute;
+				width: auto;
+				height: auto;
+				top: 0;
+				left: 10%;
+			}
+			.beng1{
+				position: absolute;
+				top: 170px;
+				left: 318px;
+			}
+			.beng2{
+				position: absolute;
+				top: 245px;
+				left: 318px;
+			}
+			.beng3{
+				position: absolute;
+				top: 330px;
+				left: 318px;
+			}
+			.kaiguan1{
+				position: absolute;
+				top: 56px;
+				left: 295px;
+			}
+			.kaiguan2{
+				position: absolute;
+				top: 166px;
+				right: 153px;
+			}
+			.kaiguan3{
+				position: absolute;
+				top: 243px;
+				right: 153px;
+			}
+			.kaiguan4{
+				position: absolute;
+				top: 325px;
+				right: 153px;
+			}
+			.kaiguan5{
+				position: absolute;
+				top: 450px;
+				left: 394px;
+			}
+			.kaiguan6{
+				position: absolute;
+				top: 505px;
+				right: 50px;
+			}
+			.cgq1{
+				position: absolute;
+				top: 20px;
+				right: 35px;
+			}
+			.cgq2{
+				position: absolute;
+				top: 95px;
+				right: 35px;
+			}
+			.cgq3{
+				position: absolute;
+				top: 213px;
+				right: 35px;
+			}
+			.kaiguan1:hover,.kaiguan2:hover,.kaiguan3:hover,.kaiguan4:hover,.kaiguan5:hover,.kaiguan6:hover,.beng1:hover,.beng2:hover,.beng3:hover{
+				cursor: pointer;
+			}
+			.shuoming{
+				position: absolute;
+				top:5px;
+				left: 45%;
+				height: 20px;
+				line-height: 20px;
+			}
+			.span1{
+				display: inline-block;
+				width: 30px;
+				height: 20px;
+				background-color: #A60614;
+			}
+			.span2{
+				display: inline-block;
+				width: 30px;
+				height: 20px;
+				background-color: #16BAA2;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="epic">
+			<img src="img/test3.png" alt="设备控制" />
+			<img class="beng1" src="img/bengguan.png"/>
+			<img class="beng2" src="img/bengguan.png"/>
+			<img class="beng3" src="img/bengguan.png"/>
+			<img class="kaiguan1" src="img/kaiguan.png"/>
+			<img class="kaiguan2" src="img/kaiguan.png"/>
+			<img class="kaiguan3" src="img/kaiguan.png"/>
+			<img class="kaiguan4" src="img/kaiguan.png"/>
+			<img class="kaiguan5" src="img/kaiguan.png"/>
+			<img class="kaiguan6" src="img/kaiguan_s.png"/>
+			<p class="cgq1">当前压力：000</p>
+			<p class="cgq2">当前压力：000</p>
+			<p class="cgq3">当前压力：000</p>
+			<div class="shuoming">
+				<span class="span1"></span>关闭状态
+				<span class="span2"></span>开启状态
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript">
+			var bengsite = [0,0,0];
+			var kaiguansite = [0,0,0,0,0,0];
+			$('.beng1').click(function(){
+				if(bengsite[0] == 0){
+					$(this).attr('src','img/bengkai .png')
+					bengsite[0] = 1;
+					return;
+				}
+				if(bengsite[0] == 1){
+					$(this).attr('src','img/bengguan.png')
+					bengsite[0] = 0;
+					return;
+				}
+			});
+			$('.beng2').click(function(){
+				if(bengsite[1] == 0){
+					$(this).attr('src','img/bengkai .png')
+					bengsite[1] = 1;
+					return;
+				}
+				if(bengsite[1] == 1){
+					$(this).attr('src','img/bengguan.png')
+					bengsite[1] = 0;
+					return;
+				}
+			});
+			$('.beng3').click(function(){
+				if(bengsite[2] == 0){
+					$(this).attr('src','img/bengkai .png')
+					bengsite[2] = 1;
+					return;
+				}
+				if(bengsite[2] == 1){
+					$(this).attr('src','img/bengguan.png')
+					bengsite[2] = 0;
+					return;
+				}
+			});
+			$('.kaiguan1').click(function(){
+				if(kaiguansite[0] == 0){
+					$(this).attr('src','img/kaiguankai.png')
+					kaiguansite[0] = 1;
+					return;
+				}
+				if(kaiguansite[0] == 1){
+					$(this).attr('src','img/kaiguan.png')
+					kaiguansite[0] = 0;
+					return;
+				}
+			});
+			$('.kaiguan2').click(function(){
+				if(kaiguansite[1] == 0){
+					$(this).attr('src','img/kaiguankai.png')
+					kaiguansite[1] = 1;
+					return;
+				}
+				if(kaiguansite[1] == 1){
+					$(this).attr('src','img/kaiguan.png')
+					kaiguansite[1] = 0;
+					return;
+				}
+			});
+			$('.kaiguan3').click(function(){
+				if(kaiguansite[2] == 0){
+					$(this).attr('src','img/kaiguankai.png')
+					kaiguansite[2] = 1;
+					return;
+				}
+				if(kaiguansite[2] == 1){
+					$(this).attr('src','img/kaiguan.png')
+					kaiguansite[2] = 0;
+					return;
+				}
+			});
+			$('.kaiguan4').click(function(){
+				if(kaiguansite[3] == 0){
+					$(this).attr('src','img/kaiguankai.png')
+					kaiguansite[3] = 1;
+					return;
+				}
+				if(kaiguansite[3] == 1){
+					$(this).attr('src','img/kaiguan.png')
+					kaiguansite[3] = 0;
+					return;
+				}
+			});
+			$('.kaiguan5').click(function(){
+				if(kaiguansite[4] == 0){
+					$(this).attr('src','img/kaiguankai.png')
+					kaiguansite[4] = 1;
+					return;
+				}
+				if(kaiguansite[4] == 1){
+					$(this).attr('src','img/kaiguan.png')
+					kaiguansite[4] = 0;
+					return;
+				}
+			});
+			$('.kaiguan6').click(function(){
+				if(kaiguansite[5] == 0){
+					$(this).attr('src','img/kaiguankai_s.png')
+					kaiguansite[5] = 1;
+					return;
+				}
+				if(kaiguansite[5] == 1){
+					$(this).attr('src','img/kaiguan_s.png')
+					kaiguansite[5] = 0;
+					return;
+				}
+			});
+		</script>
+	</body>
+</html>

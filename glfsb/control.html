@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>门禁管理</title>
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+		<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="easyui/themes/bootstrap/easyui.css" />
+		<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css" />
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/resect.css" />
+		<style type="text/css">
+			body {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+			}
+			
+			.control-content {
+				position: absolute;
+				top: 0px;
+				width: 100%;
+				bottom: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="control-content">
+			<table id="control-table"></table>
+		</div>
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+		<script src="https://cdn.bootcss.com/echarts/3.6.1/echarts.js"></script>
+		<script type="text/javascript">
+			$.ajax({
+				type: "get",
+				url: "data/control.json",
+				async: true,
+				success: function(data) {
+					$('#control-table').datagrid({
+						data: data,
+						fitColumns: true,
+						toolbar: [{
+							iconCls: 'icon-edit',
+							handler: function() {
+								alert('edit')
+							}
+						}, '-', {
+							iconCls: 'icon-help',
+							handler: function() {
+								alert('help')
+							}
+						}],
+						striped:true,
+						pagination:true,
+						singleSelect:true,
+						columns: [
+							[{
+									field: 'id',
+									title: 'ID',
+									width: "33%"
+								},
+								{
+									field: 'name',
+									title: '名字',
+									width: "33%"
+								},
+								{
+									field: 'time',
+									title: '时间',
+									width: "33%"
+								}
+							]
+						]
+					});
+				}
+			});
+		</script>
+	</body>
+
+</html>

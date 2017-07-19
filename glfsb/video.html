@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>视频监控</title>
+		<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/resect.css" />
+		<style type="text/css">
+			body {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				bottom: 0;
+				text-align: center;
+			}
+			.video{
+				position: relative;
+				margin-top: 10px;
+				width: 300px;
+				height: 200px;
+				display: inline-block;
+				border: 1px solid #ddd;
+			}
+			.video-item{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 300px;
+				height: 200px;
+				display: inline-block;
+				-webkit-transition: all .3s;
+				-moz-transition: all .3s;
+				-ms-transition: all .3s;
+				-o-transition: all .3s;
+				transition: all .3s;
+			}
+			
+			.video-item>p,
+			.video-item>img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 300px;
+				height: 200px;
+				line-height: 150px;
+				text-align: center;
+			}
+			
+			.video-item>p {
+				z-index: -1;
+			}
+			
+			.video-item>img {
+				z-index: 2;
+			}
+			/*.video-item:hover {
+				cursor: pointer;
+			}*/
+			
+			.video-close {
+				position: absolute;
+				top: 0px;
+				right: -20px;
+				z-index: 9;
+				display: none;
+				font-size: 20px;
+				color: #000000;
+			}
+			
+			.video-item-big {
+				position: fixed;
+				top: 2%;
+				left: 5%;
+				width: 90%;
+				height: 90%;
+				z-index: 99;
+			}
+			
+			.video-img-re {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.video-close:hover,.video-open:hover {
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="video">
+			<div class="video-item">
+				<p>加载中...</p>
+				<img class="video-open" src="http://214.253.118.219.megaegg.ne.jp/-wvhttp-01-/GetOneShot?v=640&frame_count=no_limit" width="100%" height="100%" class="aligncenter">
+				<p style="width: 300px; height: 20px; text-align: center;position: absolute;top: 200px;line-height: 20px;">日本和平纪念公园</p>
+				<i class="fa fa-close video-close"></i>
+			</div>
+		</div>
+		<div class="video">
+			<div class="video-item">
+				<p>加载中...</p>
+				<img class="video-open" src="http://214.253.118.219.megaegg.ne.jp/-wvhttp-01-/GetOneShot?v=640&frame_count=no_limit" width="100%" height="100%" class="aligncenter">
+				<p style="width: 300px; height: 20px; text-align: center;position: absolute;top: 200px;line-height: 20px;">日本和平纪念公园</p>
+				<i class="fa fa-close video-close"></i>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript">
+			$('.video-open').click(function() {
+				$(this).parent().addClass('video-item-big');
+				$(this).css('width', '100%');
+				$(this).css('height', '100%');
+				$(this).next().next().css('display', 'block');
+			});
+			$('.video-close').click(function() {
+				$(this).parent().removeClass('video-item-big');
+				$(this).prev().prev().css('width', '100%');
+				$(this).prev().prev().css('height', '100%');
+				$(this).css('display', 'none');
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" ; content="IE=edge, chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<title>预警</title>
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+		<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="easyui/themes/bootstrap/easyui.css" />
+		<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css" />
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/resect.css" />
+		<style type="text/css">
+			#warning {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				overflow-y: auto;
+				overflow-x: hidden;
+				background-color: #f5f5f5;
+			}
+			
+			.row {
+				padding-left: 5%;
+				padding-right: 5%;
+			}
+			
+			.warning-card {
+				height: 150px;
+			}
+			
+			.warning-card-coontent {
+				margin: 10px 2%;
+				width: 96%;
+				height: 130px;
+				padding: 10px;
+				color: #fff;
+			}
+			
+			.warning-table {
+				width: 90%;
+				padding: 0px 0px;
+				padding-top: 0;
+				background-color: #fff;
+				margin: 0 5%;
+			}
+			
+			.bordered {
+				width: 100%;
+				height: auto;
+				border: solid #ccc 1px;
+				-moz-border-radius: 6px;
+				-webkit-border-radius: 6px;
+				border-radius: 6px;
+				-webkit-box-shadow: 0 1px 1px #ccc;
+				-moz-box-shadow: 0 1px 1px #ccc;
+				box-shadow: 0 1px 1px #ccc;
+			}
+			
+			.bordered tr:hover {
+				background: #fbf8e9;
+				-o-transition: all 0.1s ease-in-out;
+				-webkit-transition: all 0.1s ease-in-out;
+				-moz-transition: all 0.1s ease-in-out;
+				-ms-transition: all 0.1s ease-in-out;
+				transition: all 0.1s ease-in-out;
+			}
+			
+			.bordered td,
+			.bordered th {
+				border-left: 1px solid #ccc;
+				border-top: 1px solid #ccc;
+				padding: 10px;
+				padding-top: 4px;
+				padding-bottom: 4px;
+				text-align: left;
+			}
+			
+			.bordered th {
+				background-color: #ddd;
+				border-top: none;
+				text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+			}
+			
+			.bordered td:first-child,
+			.bordered th:first-child {
+				border-left: none;
+			}
+			
+			.bordered th:first-child {
+				-moz-border-radius: 6px 0 0 0;
+				-webkit-border-radius: 6px 0 0 0;
+				border-radius: 6px 0 0 0;
+			}
+			
+			.bordered th:last-child {
+				-moz-border-radius: 0 6px 0 0;
+				-webkit-border-radius: 0 6px 0 0;
+				border-radius: 0 6px 0 0;
+			}
+			
+			.bordered th:only-child {
+				-moz-border-radius: 6px 6px 0 0;
+				-webkit-border-radius: 6px 6px 0 0;
+				border-radius: 6px 6px 0 0;
+			}
+			
+			.bordered tr:last-child td:first-child {
+				-moz-border-radius: 0 0 0 6px;
+				-webkit-border-radius: 0 0 0 6px;
+				border-radius: 0 0 0 6px;
+			}
+			
+			.bordered tr:last-child td:last-child {
+				-moz-border-radius: 0 0 6px 0;
+				-webkit-border-radius: 0 0 6px 0;
+				border-radius: 0 0 6px 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="warning">
+			<div class="row">
+				<div class="warning-card col-sm-6 col-md-3">
+					<div class="warning-card-coontent" style="background-color: #20a8d8;">
+						<p>今日报警次数统计：</p>
+						<h3 style="text-align: center; font-size: 34px; line-height: 34px; height: 34px; margin-top: 20px;">1</h3>
+					</div>
+				</div>
+				<div class="warning-card col-sm-6 col-md-3">
+					<div class="warning-card-coontent" style="background-color: #63c2de;">
+						<p>昨日报警总次数：</p>
+						<h3 style="text-align: center; font-size: 34px; line-height: 34px; height: 34px; margin-top: 20px;">6</h3>
+					</div>
+				</div>
+				<div class="warning-card col-sm-6 col-md-3">
+					<div class="warning-card-coontent" style="background-color: #f8cb00;">
+						<p>报警总次数统计：</p>
+						<h3 style="text-align: center; font-size: 34px; line-height: 34px; height: 34px; margin-top: 20px;">16</h3>
+					</div>
+				</div>
+				<div class="warning-card col-sm-6 col-md-3">
+					<div class="warning-card-coontent" style="background-color: #f86c6b;">
+						<p>昨日报警总次数：</p>
+						<h3 style="text-align: center; font-size: 34px; line-height: 34px; height: 34px; margin-top: 20px;">6</h3>
+					</div>
+				</div>
+			</div>
+			<div class="warning-table">
+				<table id="warning-table" style="width: 100%;">
+
+				</table>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+		<script src="https://cdn.bootcss.com/echarts/3.6.1/echarts.js"></script>
+		<script type="text/javascript">
+			var warning = "http://192.168.1.188:8888/alinkx2.0/AlarmServlet?type=all";
+			$.ajax({
+				type: "get",
+				url: "data/warningdata.json",
+				async: true,
+				success: function(data) {
+					$('#warning-table').datagrid({
+						data: data,
+						fitColumns: true,
+						toolbar: [{
+							iconCls: 'icon-edit',
+							handler: function() {
+								alert('edit')
+							}
+						}, '-', {
+							iconCls: 'icon-help',
+							handler: function() {
+								alert('help')
+							}
+						}],
+						striped: true,
+						pagination: true,
+						singleSelect: true,
+						columns: [
+							[{
+									field: 'id',
+									title: 'ID',
+									width: "25%"
+								},
+								{
+									field: 'name',
+									title: '名字',
+									width: "25%"
+								},
+								{
+									field: 'startTime',
+									title: '开始时间',
+									width: "25%"
+								},
+								{
+									field: 'endTime',
+									title: '结束时间',
+									width: "25%"
+								}
+							]
+						]
+					});
+					$('#warning-table').datagrid('getPager').pagination({
+						pageSize: 10,
+						pageNumber: 1,
+						pageList: [10, 20, 30, 40, 50],
+						beforePageText: '第', //页数文本框前显示的汉字   
+						afterPageText: '页    共 {pages} 页',
+						displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录',
+					});
+					//条件查询  
+					function Search() {
+						var queryParameter = $('#warning-table').datagrid("options").queryParams;
+						queryParameter.dtNumber = $("#dtNumber").val();
+						queryParameter.dtTitle = $("#dtTitle").val();
+						$("#warning-table").datagrid("reload");
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>

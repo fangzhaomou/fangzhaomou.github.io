@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>泵站工艺</title>
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+		<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="easyui/themes/bootstrap/easyui.css" />
+		<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css" />
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/resect.css" />
+		<style type="text/css">
+			body {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				min-height: 600px;
+				min-width: 900px;
+				
+			}
+			.technology{
+				width: 100%;
+				height: 100%;
+				overflow-x: auto;
+				overflow-y: auto;
+			}
+			.card-msg {
+				position: absolute;
+				background-color: rgba(255, 255, 255, 0.7);
+				width: 240px;
+				height: 250px;
+				border-radius: 5px;
+			}
+			
+			.card-title {
+				top: 30px;
+				width: 500px;
+				height: 80px;
+				right: 40px;
+				text-align: center;
+			}
+			
+			.card-title>h1 {
+				line-height: 50px;
+			}
+			
+			.card-title>p {
+				line-height: 30px;
+			}
+			
+			.msg-easy {
+				top: 80px;
+				left: 20px;
+				/*padding: 10px 0px;*/
+			}
+			
+			.msg-site {
+				width: 500px;
+				height: 130px;
+				bottom: 100px;
+				right: 30px;
+			}
+			
+			.msg-item {
+				/*border-top: 1px solid #00EE00;
+				border-bottom: 1px solid #00EE00;
+				border-left: 4px solid #00EE00;*/
+				width: 240px;
+				height: 30px;
+				margin-top: 10px;
+				text-align: center;
+				display: inline-block;
+			}
+			
+			.msg-item>p {
+				display: inline-block;
+				width: 120px;
+				line-height: 30px;
+				font-size: 18px;
+				text-align: right;
+				/*padding: 5px 0;*/
+			}
+			
+			.msg-item-span {
+				display: inline-block;
+				font-size: 18px;
+				background-color: #00458A;
+				min-width: 100px;
+				line-height: 30px;
+				color: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="technology">
+			<img src="img/shuibeng.jpg" alt="水泵" width="100%" style="z-index: -1; min-height: 100%;" />
+			<div class="card-msg card-title">
+				<h1>德源大楼泵房</h1>
+				<p style="font-size: 20px;">加压设备自动监控系统</p>
+			</div>
+			<div class="card-msg msg-easy">
+				<div class="msg-item">
+					<p>接收时间：</p><span class="msg-item-span">11:54</span>
+				</div>
+				<div class="msg-item">
+					<p>设定压力：</p><span class="msg-item-span"> --- bar</span>
+				</div>
+				<div class="msg-item">
+					<p>进口压力：</p><span class="msg-item-span">3.729 bar</span>
+				</div>
+				<div class="msg-item">
+					<p>出口压力：</p><span class="msg-item-span">9.465 bar</span>
+				</div>
+				<div class="msg-item">
+					<p>温度：</p><span class="msg-item-span">--- k</span>
+				</div>
+				<div class="msg-item">
+					<p>湿度：</p><span class="msg-item-span">--- %</span>
+				</div>
+			</div>
+			<div class="card-msg msg-site">
+				<div class="msg-item">
+					<p>1#泵状态：</p><span class="msg-item-span">关闭</span>
+				</div>
+				<div class="msg-item">
+					<p>1#泵转速比：</p><span class="msg-item-span">0.0%</span>
+				</div>
+				<div class="msg-item">
+					<p>2#泵状态：</p><span class="msg-item-span">开启</span>
+				</div>
+				<div class="msg-item">
+					<p>2#泵转速比：</p><span class="msg-item-span">20.3%</span>
+				</div>
+				<div class="msg-item">
+					<p>3#泵状态：</p><span class="msg-item-span">关闭</span>
+				</div>
+				<div class="msg-item">
+					<p>3#泵转速比：</p><span class="msg-item-span">0.0%</span>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+		<script src="https://cdn.bootcss.com/echarts/3.6.1/echarts.js"></script>
+		<script type="text/javascript">
+		</script>
+	</body>
+
+</html>

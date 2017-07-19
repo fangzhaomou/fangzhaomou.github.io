@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>实时曲线</title>
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+		<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="easyui/themes/bootstrap/easyui.css" />
+		<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css" />
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/resect.css" />
+		<style type="text/css">
+			.realtime-content {
+				position: absolute;
+				top: 5px;
+				bottom: 0;
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="realtime-content">
+			<div id="realtime-chart" style="width: 100%;height:100%;"></div>
+		</div>
+
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+		<script src="https://cdn.bootcss.com/echarts/3.6.1/echarts.js"></script>
+		<script type="text/javascript">
+			var lsurl = "http://112.74.211.97/glf/DataServlet?type=lishi";
+			var ssurl = "http://112.74.211.97/glf/DataServlet?type=shishi";
+			$.ajax({
+				type: "get",
+				url: lsurl,
+				async: true,
+				success: function(data) {
+					console.log(data);
+					creatquxian(JSON.parse(data));
+				},
+				error: function(xhr, type, errorThrown) {}
+			});
+
+			function creatquxian(myData) {
+				var myChart = echarts.init(document.getElementById('realtime-chart'));
+				var legenddata = [];
+				for(var i = myData.length - 1; i >= 0; i--) {
+					legenddata.push(myData[i].name);
+				}
+				// 指定图表的配置项和数据
+				console.log(myData);
+				var option = {
+					title: {
+						show: false
+					},
+					legend: {
+						data: legenddata
+					},
+					grid: {
+						show: true
+					},
+					tooltip: {
+						trigger: 'axis',
+					},
+					xAxis: {
+						type: 'time'
+					},
+					yAxis: {
+						type: 'value'
+					},
+					series: myData
+				};
+
+				var timeout = false;
+				// 使用刚指定的配置项和数据显示图表。
+				myChart.setOption(option);
+				var a = 0;
+				httpshishi(myData, myChart, option);
+			}
+
+			function httpshishi(myData, myChart, option) {
+				$.ajax({
+					url: ssurl,
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					async: true,
+					success: function(data) {
+						console.log(data);
+						var data = JSON.parse(data);
+						for(var i = 0; i < myData.length; i++) {
+							for(var n = 0; n < data.length; n++) {
+								if(myData[i].name == data[n].name) {
+									myData[i].data.push(data[n].val);
+								}
+							}
+						}
+						myChart.setOption({
+							series: myData
+						});
+						setTimeout(function() {
+							console.log("sssj");
+							httpshishi(myData, myChart, option);
+						}, 3000);
+					},
+					error: function(xhr, type, errorThrown) {
+						//异常处理；
+						console.log("请求异常");
+						setTimeout(function() {
+							httpshishi(myData, myChart, option);
+						}, 3000);
+					}
+				});
+			}
+		</script>
+	</body>
+
+</html>
