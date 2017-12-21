@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>仿锤子3d</title>
+	<style type="text/css">
+		.banner{
+	        padding: 100px 50px !important;
+	        perspective: 1000px !important;
+	    }
+	    .bg{
+	        transition: all .3s linear;
+	        transition-timing-function: linear;
+	        width: 100%;
+	        background: url("http://static.smartisanos.cn/index/img/store/home/banner-3d-item-1-box-1_61bdc2f4f9.png");
+	        margin: 0 auto;
+	        transform-style: preserve-3d;
+	        cursor: pointer;
+	        transform: rotateX(0deg) rotateY(0deg);
+	        border-radius: 10px;
+	        overflow: hidden;
+	    }
+	    .bg img{
+            transition: all .2s linear;
+            transform: rotate(0deg);
+            border-radius: 10px;
+        }
+	</style>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="app" class="banner">
+        <div class="bg" ref="bg" @mousemove="move($event)" @mouseout="out" :style="{}">
+            <img src="http://static.smartisanos.cn/index/img/store/home/banner-3d-item-1-box-3_8fa7866d59.png" alt="">
+        </div>
+    </div>
+    <script type="text/javascript">
+    	var app = new Vue({
+		  el: '#app',
+		  data: {
+		  },
+		  methods: {
+		  	move: function (e) {
+		  		var bg = this.$refs.bg
+                var moveX = e.pageX - bg.offsetLeft
+                var moveY = e.pageY - bg.offsetTop
+                var x = moveX - bg.offsetWidth/2,
+                    y = bg.offsetHeight/2 - moveY;
+                this.$refs.bg.style.transform = 'rotateX(' + y/80 + 'deg) rotateY(' + x/200 + 'deg)';
+		  	},
+		  	out: function () {
+		  		this.$refs.bg.style.transform = 'rotateX(0deg) rotateY(0deg)';
+		  	}
+		  }
+		})
+    </script>
+</body>
+</html>
