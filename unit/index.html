@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>前端开发工具</title>
+	<style type="text/css">
+		.hang {
+			display: block;
+			margin-top: 5px;
+		}
+	</style>
+</head>
+<body>
+	<textarea id="olddata" class="hang" rows="5" cols="100" type="text" name="olddata"></textarea>
+	<button id="shengcheng" class="hang">生成</button>
+	<textarea id="newdata" class="hang" rows="10" cols="100" type="text" name="nwedata"></textarea>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$('#shengcheng').on('click', function () {
+			var olddata = $('#olddata').val()
+			var splitdata = olddata.split(',')
+			var name = splitdata[0]
+			var data = []  //  处理好的数据
+			console.log(splitdata)
+			for (var i = 1; i < splitdata.length; i++) {
+				var cha = splitdata[i].split(':')
+				data.push({label: cha[0], key: cha[1]})	
+			}
+			console.log(data)
+			var newData = {}
+			var xxcolumns = []
+			var xxSelectList = []
+			var xxDefaultSelete = ''
+			var xxSearchForm = []
+			var xxFormItem = []
+			for (var i = 0; i < data.length; i++) {
+				xxcolumns.push({title: data[i].label, key: data[i].key})
+				xxSelectList.push({label: data[i].label, value: data[i].key})
+				xxSearchForm.push(data[i].key)
+				xxFormItem.push({label: data[i].label, key: data[i].key, placeholder: '请输入'+data[i].label})
+			}
+			xxDefaultSelete = data[0].key
+			newData[name + 'Columns'] = xxcolumns
+			newData[name + 'SelectList'] = xxSelectList
+			newData[name + 'DefaultSelete'] = xxDefaultSelete
+			newData[name + 'SearchForm'] = xxSearchForm
+			newData[name + 'FormItem'] = xxFormItem
+			console.log(obj2string(newData))
+			$('#newdata').val(obj2string(newData))
+		})
+
+		function obj2string(o){ 
+		 var r=[]; 
+		 if(typeof o=="string"){ 
+		 return "\""+o.replace(/([\'\"\\])/g,"\\$1").replace(/(\n)/g,"\\n").replace(/(\r)/g,"\\r").replace(/(\t)/g,"\\t")+"\""; 
+		 } 
+		 if(typeof o=="object"){ 
+		 if(!o.sort){ 
+		  for(var i in o){ 
+		  r.push(i+":"+obj2string(o[i])); 
+		  } 
+		  if(!!document.all&&!/^\n?function\s*toString\(\)\s*\{\n?\s*\[native code\]\n?\s*\}\n?\s*$/.test(o.toString)){ 
+		  r.push("toString:"+o.toString.toString()); 
+		  } 
+		  r="{"+r.join()+"}"; 
+		 }else{ 
+		  for(var i=0;i<o.length;i++){ 
+		  r.push(obj2string(o[i])) 
+		  } 
+		  r="["+r.join()+"]"; 
+		 } 
+		 return r; 
+		 } 
+		 return o.toString(); 
+		} 
+	</script>
+</body>
+</html>
