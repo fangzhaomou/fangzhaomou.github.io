@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>SVG平移缩放测试</title>
+    <style media="screen">
+      #theSvgElement{
+        user-select:none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <button type="button" name="button" id="fd">放大</button>
+      <button type="button" name="button" id="sx">缩小</button>
+      <svg id="theSvgElement" width="800px" height="800px" preserveAspectRatio="xMinYMin meet" viewBox="0,0,800,800">
+
+        <!-- Outline the SVG viewport with a black 2 pixel line. -->
+        <!-- <rect x="0" y="0" width="100%" height="100%" style="stroke: black; fill: none; stroke-width: 2px;"></rect> -->
+
+        <!-- Center the following text within the 800 pixel wide SVG viewport. -->
+        <!-- <text x="50%" y="20" style="text-anchor: middle; font-size: 12pt; font-style: italic; font-weight: bold;">
+          This sample only works with browsers that support HTML5 and inline SVG, such as Microsoft Internet Explorer 9.
+        </text> -->
+
+        <!-- Place a red center point in the center of the SVG viewport. -->
+        <!-- <circle cx="50%" cy="50%" r="5" style="fill: red;"></circle> -->
+
+        <!-- Define an SVG graphic which will be reduced in size and reused multiple times. -->
+        <g id="parentGraphic" style="stroke: blue; fill: blue;">
+          <rect x="30" y="30" width="700" height="700" rx="10" ry="10" style="fill: none; stroke-width: 2px;"></rect>
+          <text x="350" y="750" style="text-anchor: middle;">
+            This text is going to get extremely small.
+          </text>
+          <text x="10" y="370" style="writing-mode: tb; text-anchor: middle;">
+            The <tspan style="stroke: red;">red</tspan> center dot is to the left.
+          </text>
+          <text x="750" y="370" style="writing-mode: tb; text-anchor: middle;">
+            The <tspan style="stroke: red; fill: red;">red</tspan> center dot is to the right.
+          </text>
+        </g>
+
+        <!--
+          To scale a graphic by a given factor around some center point, use the following formula:
+            transform="translate( -centerX*(factor-1), -centerY*(factor-1) ) scale(factor)"
+        -->
+        <!--
+          The scaling factor is 0.9, so we have:
+            transform="translate( -400*(0.9-1), -300*(0.9-1) ) scale(0.9)" or
+            transform="tanslate(40, 30) scale(0.9)"
+        -->
+        <use href="#parentGraphic" transform="translate(40, 30) scale(0.9)"></use>
+
+        <!-- The scaling factor = 0.8, so we have transform="translate(80, 60) scale(0.8)". -->
+        <use href="#parentGraphic" transform="translate(80, 60) scale(0.8)"></use>
+
+        <!-- And so on. -->
+        <use href="#parentGraphic" transform="translate(120, 90) scale(0.7)"></use>
+        <use href="#parentGraphic" transform="translate(160, 120) scale(0.6)"></use>
+        <use href="#parentGraphic" transform="translate(200, 150) scale(0.5)"></use>
+        <use href="#parentGraphic" transform="translate(240, 180) scale(0.4)"></use>
+        <use href="#parentGraphic" transform="translate(280, 210) scale(0.3)"></use>
+        <use href="#parentGraphic" transform="translate(320, 240) scale(0.2)"></use>
+        <use href="#parentGraphic" transform="translate(360, 270) scale(0.1)"></use>
+        <use href="#parentGraphic" transform="translate(380, 285) scale(0.05)"></use>
+      </svg>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-mousewheel/3.1.13/jquery.mousewheel.js"></script>
+    <script type="text/javascript">
+      $('#theSvgElement').mousewheel(function(event, delta, deltaX, deltaY) {
+        console.log($('#theSvgElement'));
+        var viewbox = $('#theSvgElement')[0].attributes.viewBox.value.split(',')
+        if (delta < 0) {
+          var two = parseInt(viewbox[2]) + 20
+          var three = parseInt(viewbox[3]) + 20
+          var value = viewbox[0] + ',' + viewbox[1] + ',' + two + ',' + three
+          $('#theSvgElement').attr('viewBox', value)
+        } else {
+          var two = parseInt(viewbox[2]) - 20
+          var three = parseInt(viewbox[3]) - 20
+          var value = viewbox[0] + ',' + viewbox[1] + ',' + two + ',' + three
+          $('#theSvgElement').attr('viewBox', value)
+        }
+      });
+      var down = false
+      var move = []
+      var viewboxval = []
+      $("#theSvgElement").mousedown(function(e){
+        down = true
+        move[0] = e.clientX
+        move[1] = e.clientY
+        viewboxval = $('#theSvgElement')[0].attributes.viewBox.value.split(',')
+      });
+      $("#theSvgElement").mouseup(function(e){
+        down = false
+      });
+      $('#theSvgElement').mousemove(function(e){
+        if (down) {
+          var movew = e.clientX - move[0]
+          var moveh = e.clientY - move[1]
+          var two = parseInt(viewboxval[0]) - movew*(viewboxval[2]/800)
+          var three = parseInt(viewboxval[1]) - moveh*(viewboxval[3]/800)
+          var value = two + ',' + three + ',' + viewboxval[2] + ',' + viewboxval[3]
+          $('#theSvgElement').attr('viewBox', value)
+        }
+      });
+      $('#sx').click(function() {
+        console.log('缩小');
+      })
+    </script>
+  </body>
+</html>
