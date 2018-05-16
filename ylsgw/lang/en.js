@@ -1,0 +1,81 @@
+module.exports = {
+  message: {
+    language: 'Language',
+    hello: 'Hello, World',
+    chinese: 'Chinese',
+    english: 'English'
+  },
+  content: {
+    hello: 'HELLO, Together To The Future',
+    ln: 'Equipment As a Service',
+    cpyln: 'Products and Ideas',
+    jjfa: 'Solutions',
+    gsjs: 'Company Introduction',
+    td: 'Team Introduction',
+    al: 'Case Selection',
+    hzhb: 'Partner',
+    lxwm: 'Contact us',
+    ljgd: 'Learn more'
+  },
+  menu: {
+    home: 'Home',
+    gygs: 'About the Company',
+    gycp: 'About the Product',
+    jjfa: 'Solutions',
+    khal: 'Customer Case',
+    jszc: 'Technical Support',
+    zxns: 'Job Offers',
+    lxwm: 'Contact us',
+    gsjj: 'Company Introduction',
+    tdjs: 'Team Introduction',
+    smyj: 'Mission & Vision',
+    qywh: 'Corporate Culture',
+    yj: 'Hardware As a Service',
+    rj: 'Software As a Service',
+    pt: 'Platform As a Service',
+    sbwlw: 'Pumps IoT',
+    djwlw: 'Motor IoT',
+    gcwlw: 'Factory IoT',
+    sjfx: 'Data Analysis',
+    xzzx: 'Download Center'
+  },
+  subtitle: {
+    gsjs: 'SaaS&nbsp;&nbsp;&nbsp;&nbsp;HaaS&nbsp;&nbsp;&nbsp;&nbsp;PaaS',
+    cpyln: 'Provide enterprises with a series of software and hardware-related IoT supporting products and services',
+    jjfa: 'Focus on developing customized professional IoT solutions with specific industry',
+    Al: 'Focus on the development of customized professional IoT solutions with specific industry',
+    hzhb: 'Together Create Technology,Together Meet the Future',
+  },
+  main: {
+    gsjsmsg: '&nbsp;&nbsp;&nbsp;&nbsp;Hangzhou Rational Number Electronic Technology Co., Ltd. is a professional company specialized in the systemization and intelligentization of electrical equipment. The core business of the company is aims to combine a series of high-quality software and hardware products with independent research and development to provide intelligent solutions for technology energy-saving motors, pumps, electromechanical systems. <br/>' +
+    'Intelligent solutions are based on the concept of industrial Internet of Things, relying on the advantages of motor technology, through the use of motor-based industrial equipment, the Internet of things. Targeted at after-sales support and sales, the former support, equipment parameters, shortage of technicians, equipment safety issues and other industry pain points to solve the pain points of the industrial equipment industry, mainly through the information technology, anti-control, preventive diagnosis, data visualization, AI five stages to realize the industrial equipment Internet of Things. ',
+    rjtitle: 'Software as a Service<br/>',
+    rjcontent: 'The development of a customized software platform for customers of the Internet of Things (IoT) will be customized through the Web, App, WeChat applets, H5 pages, and other forms of development and customer needs. At the same time, combining with our hardware products to achieve data collection, accumulation, application and diagnostic pre-judgment. ',
+    yjtitle: 'Hardware As a Service',
+    yjcontent: 'Independent development of the Internet of Things box as a hardware supporting facility, through the layout of the vibration, temperature, humidity, pH and other dimensions of the sensor to collect the data of the equipment vibration, temperature, humidity, pH in order to monitor the situation of the machines, and then combine the software platform for data applications. ',
+    pttitle: 'Platform As a Service',
+    ptcontent: 'Customized development of cloud platforms for the industry, mainly aimed at the development of custom cloud platforms for the motor and water pump industries. It mainly aims to remotely monitor, control, predict, diagnose and diagnose motor and pump equipment. Upgrade and many other features are implemented. Combining long-term accumulation of industry data for data analysis, it is possible to obtain industry-wide rules for equipment operation, and to achieve optimal automation of equipment in the future. ',
+    jjfasbtitle: 'Pump Solution',
+    jjfadjtitle: 'Standard Motor Solutions',
+    jjfagctitle: 'Factory Internet of Things Solutions',
+    jjfasbsubtitle: 'Smart Water, Intelligent Control',
+    jjfadjsubtitle: 'Smart Motors, Optimized Control',
+    jjfagcsubtitle: 'Smart Production, Traditional Upgrade',
+    jjfasbcontent: 'Specialized intelligent solution for the pump industry, combined with the water pump IoT box and software platform developed independently to detect, record and remotely control the temperature, humidity, vibration and other data of the pump. ',
+    jjfadjcontent: 'Specialized intelligent solutions for standard motors, combined with independently developed motor IoT boxes and software platforms for the detection, recording and remote control of motor operating temperature, humidity, vibration and other data of motor. ',
+    jjfagccontent: 'Continuous integration of sensing or control sensors or controllers with sensing and monitoring capabilities. As well as ubiquitous technologies, mobile communications, intelligent analysis and other technologies into all aspects of industrial production processes. Thereby significantly increasing manufacturing efficiency and improving product quality , reducing product costs and resource consumption, and ultimately realize the new stage of upgrading traditional industries to intelligence. ',
+    glfsbtitle: 'Grundfos Pump',
+    djtitle: 'Motor Monitoring',
+    jzgcwlwtitle: 'Jiazhe Internet of Things Platform',
+    glfsbcontent: "Monitoring and control of temperature, humidity, vibration, flow and other dimensions of the water pump's equipment for the secondary water supply pump room used by Grundfos pumps",
+    djcontent: 'Remote detection, control, and upgrade for the operation of standard motors in different locations to improve the efficiency of motor operation, reduce equipment operating costs and after-sales costs',
+    jzgcwlwcontent: 'Intelligent upgrades for traditional industrial production, all-round control of production lines, make the effective integration of sales and production to achieve intelligent lean production'
+  },
+  contactus: {
+    title: 'Contact us',
+    name: 'Hangzhou Rational Number Electronic Technology Co., Ltd.',
+    addr: '639 Moganshan Road, Xihu District, Hangzhou',
+    phone: '(+86)18058144750',
+    email: 'ysd@applyrealsmart.com'
+  }
+}
